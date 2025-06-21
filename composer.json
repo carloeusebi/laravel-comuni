@@ -1,5 +1,5 @@
 {
-  "name": "carlo-eusebi/laravel-comuni",
+  "name": "carloeusebi/laravel-comuni",
   "description": "A package to retrieve italians comuni, province and regions using various apis.",
   "type": "library",
   "require": {
