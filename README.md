@@ -73,32 +73,9 @@ $regions = Comuni::regioni(['nome' => 'Lazio']);
 
 ### Available Parameters
 
-#### For Comuni
+For available parameters please refer to third parties documentations:
 
-- `page`: Page number for pagination (integer)
-- `pagesize`: Number of items per page (integer, max 500)
-- `onlyname`: Return only names (boolean)
-- `onlyforeignname`: Return only foreign names (boolean)
-- `nome`: Filter by name (string)
-- `codice`: Filter by code (string)
-- `codiceCatastale`: Filter by cadastral code (string)
-- `cap`: Filter by postal code (string)
-
-#### For Province
-
-- `page`: Page number for pagination (integer)
-- `pagesize`: Number of items per page (integer, max 500)
-- `onlyname`: Return only names (boolean)
-- `onlyforeignname`: Return only foreign names (boolean)
-- `nome`: Filter by name (string)
-- `codice`: Filter by code (string)
-- `sigla`: Filter by province abbreviation (string)
-
-#### For Regioni
-
-- `page`: Page number for pagination (integer)
-- `pagesize`: Number of items per page (integer, max 500)
-- `nome`: Filter by name (string)
+- [Samurai016/Comuni-ITA](https://comuni-ita.readme.io/reference/comuni-1)
 
 ## Configuration
 
@@ -110,13 +87,18 @@ php artisan vendor:publish --provider="CarloEusebi\LaravelComuni\ComuniServicePr
 
 This will create a `config/comuni.php` file where you can modify the default settings:
 
+You can safely cache the responses for a long period of time. As these services are hosted on free platforms, please
+consider keeping responses cached as long as possible.
+
 ```php
 return [
+
+    // currently the only provider is `comuni-ita`
     'provider' => 'comuni-ita',
 
     'cache' => [
         // the prefix for the cache key
-        'prefix' => '',
+        'prefix' => 'comuni-',
 
         // the number of days the responses should be cached for
         'ttl' => 60,
@@ -140,7 +122,12 @@ All methods return Laravel Collections. Here's an example of the data structure 
     'nomeStraniero' => 'Rome',
     'cap' => ['00118', '00121', '00122', ...],
     'prefisso' => '06',
-    'provincia' => 'Roma',
+    'provincia' => [
+        'codice' => '058',
+        'nome' => 'Roma',
+        'sigla' => 'RM',
+        'regione' => 'Lazio'
+    ],
     'email' => 'protocollo.gabinettosindaco@pec.comune.roma.it',
     'pec' => 'protocollo.gabinettosindaco@pec.comune.roma.it',
     'telefono' => '0667101',
@@ -170,4 +157,12 @@ Returns a collection of region names as strings:
 
 ```php
 ['Abruzzo', 'Basilicata', 'Calabria', ...]
+```
+
+## Testing
+
+This package includes a comprehensive test suite. To run tests:
+
+```bash
+composer test
 ```

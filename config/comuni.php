@@ -6,7 +6,7 @@ return [
     'cache' => [
 
         // the prefix for the cache key
-        'prefix' => '',
+        'prefix' => 'comuni-',
 
         // the number of days the responses should be cached for
         'ttl' => 60,
