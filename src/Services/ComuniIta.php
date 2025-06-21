@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Http;
 
 /**
  * @see https://github.com/Samurai016/Comuni-ITA
+ *
+ * @internal
+ *
+ * @template Provincia of array{name: string, sigla: string, codice: string, regione:string}
  */
 class ComuniIta implements Comuni
 {
@@ -27,6 +31,21 @@ class ComuniIta implements Comuni
      *     codiceCatastale?: string,
      *     cap?: string,
      * }  $params
+     * @return Collection<int, string|array{
+     *     codice: string,
+     *     nome: string,
+     *     nomeStranier: string|null,
+     *     codiceCatastale: string,
+     *     cap: string,
+     *     prefisso: string,
+     *     provincia: Provincia,
+     *     email: string|null,
+     *     pec: string|null,
+     *     telefono: string|null,
+     *     fax: string|null,
+     *     popolazione: int,
+     *     coordinate: array{lat: float, lng: float}
+     * }>
      *
      * @throws InvalidParameterCombinationException
      */
@@ -68,6 +87,7 @@ class ComuniIta implements Comuni
      *     codice?: string,
      *     sigla?: string,
      * }  $params
+     * @return Collection<int, Provincia>
      */
     public function province(?string $regione = null, array $params = []): Collection
     {
@@ -98,6 +118,7 @@ class ComuniIta implements Comuni
      *     pagesize?: int<0, 500>,
      *     nome?: string,
      * }  $params
+     * @return Collection<int, string>
      */
     public function regioni(array $params = []): Collection
     {
