@@ -25,7 +25,7 @@ Currently supported apis:
 You can install the package via composer:
 
 ```bash
-composer require carlo-eusebi/laravel-comuni
+composer require carloeusebi/laravel-comuni
 ```
 
 The package will automatically register its service provider.
