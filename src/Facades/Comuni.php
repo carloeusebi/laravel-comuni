@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static Collection<int, mixed> comuni(string|null $regione, string|null $provincia)
- * @method static Collection<int, mixed> province(string|null $regione)
- * @method static Collection<int, string> regioni()
+ * @method static Collection<int, mixed> comuni(string|null $regione, string|null $provincia, array<string,mixed> $params)
+ * @method static Collection<int, mixed> province(string|null $regione, array<string,mixed> $params)
+ * @method static Collection<int, string> regioni(array<string,mixed> $params)
  */
 class Comuni extends Facade
 {
