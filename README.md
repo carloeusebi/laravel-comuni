@@ -159,6 +159,18 @@ Returns a collection of region names as strings:
 ['Abruzzo', 'Basilicata', 'Calabria', ...]
 ```
 
+## Faking
+
+This package already has a comprehensive test suite. You don't need to test this package in your app.
+But if you would like to test your implementation of this package, you can mock `Comuni` and decide what it should
+return, or you can fake it and this package will generate a fake generic response for you.
+
+```php
+\CarloEusebi\LaravelComuni\Facades\Comuni::fake();
+
+\CarloEusebi\LaravelComuni\Facades\Comuni::shouldReceive('comuni')->andReturn(collect(['Abano Terme', 'Abbadia Cerreto', 'Abbadia Lariana', 'Abbadia San Salvatore']));
+```
+
 ## Testing
 
 This package includes a comprehensive test suite. To run tests:
