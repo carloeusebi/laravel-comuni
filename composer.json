@@ -1,0 +1,73 @@
+{
+  "name": "carlo-eusebi/laravel-comuni",
+  "description": "A package to retrieve italians comuni, province and regions using various apis.",
+  "type": "library",
+  "require": {
+    "php": "^8.2",
+    "illuminate/http": "^12.19",
+    "illuminate/support": "^12.19",
+    "illuminate/cache": "^12.19",
+    "illuminate/testing": "^12.19"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.22",
+    "orchestra/testbench": "^10.4",
+    "pestphp/pest": "^3.8",
+    "pestphp/pest-plugin-type-coverage": "^3.5",
+    "phpstan/phpstan": "^2.1",
+    "rector/rector": "^2.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "CarloEusebi\\LaravelComuni\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/",
+      "Workbench\\App\\": "workbench/app/",
+      "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+      "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+    }
+  },
+  "authors": [
+    {
+      "name": "carloeusebi",
+      "email": "carloeusebi@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "CarloEusebi\\LaravelComuni\\ComuniServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "pint",
+    "refactor": "rector",
+    "test:type-coverage": "pest -p",
+    "test:lint": "pint --test",
+    "test:unit": "pest -p --compact --coverage --exactly=100",
+    "test:types": "phpstan",
+    "test:refactor": "rector --dry-run",
+    "fix": [
+      "@refactor",
+      "@lint"
+    ],
+    "test": [
+      "@test:lint",
+      "@test:type-coverage",
+      "@test:unit",
+      "@test:types",
+      "@test:refactor"
+    ]
+  }
+}
