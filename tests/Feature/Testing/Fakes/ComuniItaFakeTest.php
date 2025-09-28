@@ -48,3 +48,10 @@ it('throws InvalidParameterCombinationException when both regione and provincia 
         Comuni::comuni(regione: 'Lazio', provincia: 'Roma');
     })->toThrow(InvalidParameterCombinationException::class);
 });
+
+test('cap', function (): void {
+    expect(Comuni::cap('61032'))
+        ->toBeIterable()
+        ->first()
+        ->toHaveKey('nome', 'Fano');
+});

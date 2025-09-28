@@ -2,6 +2,7 @@
 
 namespace CarloEusebi\LaravelComuni\Contracts;
 
+use CarloEusebi\LaravelComuni\Comune;
 use Illuminate\Support\Collection;
 
 interface Comuni
@@ -27,4 +28,9 @@ interface Comuni
      * @return Collection<int, string>
      */
     public function regioni(array $params = []): Collection;
+
+    /**
+     * @return Collection<int, Comune>|null
+     */
+    public function cap(string $cap): ?Collection;
 }

@@ -106,4 +106,9 @@ class ComuniItaFake implements Comuni
             'regione' => fake()->city(),
         ];
     }
+
+    public function cap(string $cap): ?Collection
+    {
+        return (new ComuniIta)->cap($cap);
+    }
 }
