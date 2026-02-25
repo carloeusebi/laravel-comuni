@@ -5,6 +5,8 @@ namespace CarloEusebi\LaravelComuni\Services;
 use CarloEusebi\LaravelComuni\Comune;
 use CarloEusebi\LaravelComuni\Contracts\Comuni;
 use CarloEusebi\LaravelComuni\Exceptions\InvalidParameterCombinationException;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -70,12 +72,7 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: function () use ($endpoint, $params): \Illuminate\Support\Collection {
-                /** @var list<string|array<string, mixed>> $comuni */
-                $comuni = Http::get($endpoint, $params)->json();
-
-                return collect($comuni);
-            }
+            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
         );
     }
 
@@ -105,12 +102,7 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: function () use ($endpoint, $params): \Illuminate\Support\Collection {
-                /** @var list<string| array<string, string>> $province */
-                $province = Http::get($endpoint, $params)->json();
-
-                return collect($province);
-            }
+            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
         );
     }
 
@@ -132,13 +124,22 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: function () use ($endpoint, $params): \Illuminate\Support\Collection {
-                /** @var list<string> $regions */
-                $regions = Http::get($endpoint, $params)->json();
-
-                return collect($regions);
-            }
+            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
         );
+    }
+
+    /**
+     * @param  array<string, mixed>  $parms
+     * @return list<string|array<string, mixed>>
+     *
+     * @throws ConnectionException
+     * @throws RequestException
+     */
+    private function makeRequest(string $endpoints, array $parms = []): array
+    {
+        return Http::get($endpoints, $parms)
+            ->throw()
+            ->json();
     }
 
     public function cap(string $cap): ?Collection
