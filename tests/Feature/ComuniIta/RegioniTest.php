@@ -10,14 +10,6 @@ it('returns a collection of all regions', function (): void {
         ->each->toBeString();
 });
 
-it('returns regions filtered by name parameter', function (): void {
-    $result = Comuni::regioni(params: ['nome' => 'Lazio']);
-
-    expect($result)
-        ->toHaveCount(1)
-        ->first()->toBe('Lazio');
-});
-
 it('returns regions with pagination parameters', function (): void {
     $result = Comuni::regioni(params: ['pagesize' => 2]);
 

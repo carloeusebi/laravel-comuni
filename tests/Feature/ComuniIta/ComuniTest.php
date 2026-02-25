@@ -24,16 +24,9 @@ it('returns comuni filtered by province', function (): void {
 });
 
 it('returns comuni filtered by additional parameters', function (): void {
-    $result = Comuni::comuni(provincia: 'Pesaro e Urbino', params: ['nome' => 'Fano']);
+    $result = Comuni::comuni(provincia: 'Pesaro e Urbino', params: ['q' => 'Fano']);
 
     expect($result)
         ->toHaveCount(1)
         ->first()->toHaveKey('codiceCatastale', 'D488');
-});
-
-it('can return only name', function (): void {
-    $result = Comuni::comuni(params: ['onlyname' => true]);
-
-    expect($result)
-        ->each->toBeString();
 });

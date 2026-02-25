@@ -22,19 +22,10 @@ use Illuminate\Support\Facades\Http;
  */
 class ComuniIta implements Comuni
 {
-    private const BASE_URL = 'https://axqvoqvbfjpaamphztgd.functions.supabase.co/';
+    private const BASE_URL = 'https://comuni-ita.nicolorebaioli.dev';
 
     /**
-     * @param  array{
-     *     page?: int<1, max>,
-     *     pagesize?: int<0, 500>,
-     *     onlyname?: bool,
-     *     onlyforeignname?: bool,
-     *     nome?: string,
-     *     codice?: string,
-     *     codiceCatastale?: string,
-     *     cap?: string,
-     * }  $params
+     * @param  array<string ,mixed>  $params
      * @return Collection<int, string|array{
      *     codice: string,
      *     nome: string,
@@ -77,15 +68,7 @@ class ComuniIta implements Comuni
     }
 
     /**
-     * @param  array{
-     *     page?: int<1, max>,
-     *     pagesize?: int<0, 500>,
-     *     onlyname?: bool,
-     *     onlyforeignname?: bool,
-     *     nome?: string,
-     *     codice?: string,
-     *     sigla?: string,
-     * }  $params
+     * @param  array<string, mixed>  $params
      * @return Collection<int, Provincia>
      */
     public function province(?string $regione = null, array $params = []): Collection
@@ -107,11 +90,7 @@ class ComuniIta implements Comuni
     }
 
     /**
-     * @param  array{
-     *     page?: int<1, max>,
-     *     pagesize?: int<0, 500>,
-     *     nome?: string,
-     * }  $params
+     * @param  array<string, mixed>  $params
      * @return Collection<int, string>
      */
     public function regioni(array $params = []): Collection

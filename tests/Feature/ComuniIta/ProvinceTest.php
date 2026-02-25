@@ -17,11 +17,3 @@ it('returns provinces filtered by region', function (): void {
     expect($result)
         ->toHaveCount(5);
 });
-
-it('returns provinces filtered by additional parameters', function (): void {
-    $result = Comuni::province(params: ['nome' => 'Roma']);
-
-    expect($result)
-        ->toHaveCount(1)
-        ->first()->toHaveKey('nome', 'Roma');
-});
