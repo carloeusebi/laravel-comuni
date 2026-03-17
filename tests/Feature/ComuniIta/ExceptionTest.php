@@ -14,7 +14,7 @@ it('throws InvalidParameterCombinationException with correct message', function 
     // This test verifies the exception message
     try {
         Comuni::comuni(regione: 'Lazio', provincia: 'Roma');
-    } catch (InvalidParameterCombinationException $e) {
-        expect($e->getMessage())->toBe("Cannot specify both 'regione' and 'provincia' parameters simultaneously");
+    } catch (InvalidParameterCombinationException $invalidParameterCombinationException) {
+        expect($invalidParameterCombinationException->getMessage())->toBe("Cannot specify both 'regione' and 'provincia' parameters simultaneously");
     }
 });

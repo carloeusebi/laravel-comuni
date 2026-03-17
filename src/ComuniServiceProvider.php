@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class ComuniServiceProvider extends ServiceProvider
 {
+    #[\Override]
     public function register(): void
     {
         $this->mergeConfigFrom(
