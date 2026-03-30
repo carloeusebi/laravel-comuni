@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -10,7 +11,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withSkip([
-        \Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector::class,
+        RemoveExtraParametersRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

@@ -87,10 +87,8 @@ class ComuniItaFake implements Comuni
             'telefono' => fake()->phoneNumber(),
             'fax' => fake()->phoneNumber(),
             'popolazione' => fake()->numberBetween(1000, 1000000),
-            'coordinate' => [
-                'lat' => fake()->latitude(),
-                'lng' => fake()->longitude(),
-            ],
+            'lat' => (string) fake()->latitude(),
+            'lng' => (string) fake()->longitude(),
         ];
     }
 

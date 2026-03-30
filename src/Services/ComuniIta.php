@@ -38,8 +38,8 @@ class ComuniIta implements Comuni
      *     pec: string|null,
      *     telefono: string|null,
      *     fax: string|null,
-     *     popolazione: int,
-     *     coordinate: array{lat: float, lng: float}
+     *     lat: numeric-string,
+     *     lng: numeric-string,
      * }>
      *
      * @throws InvalidParameterCombinationException
@@ -51,9 +51,9 @@ class ComuniIta implements Comuni
         }
 
         $endpoint = self::BASE_URL.'/comuni';
-        if ($provincia !== null && $provincia !== '' && $provincia !== '0') {
+        if (! in_array($provincia, [null, '', '0'], true)) {
             $endpoint .= '/provincia/'.$provincia;
-        } elseif ($regione !== null && $regione !== '' && $regione !== '0') {
+        } elseif (! in_array($regione, [null, '', '0'], true)) {
             $endpoint .= '/'.$regione;
         }
 
@@ -63,7 +63,7 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
+            callback: fn (): Collection => collect($this->makeRequest($endpoint, $params))
         );
     }
 
@@ -75,7 +75,7 @@ class ComuniIta implements Comuni
     {
         $endpoint = self::BASE_URL.'/province';
 
-        if ($regione !== null && $regione !== '' && $regione !== '0') {
+        if (! in_array($regione, [null, '', '0'], true)) {
             $endpoint .= '/'.$regione;
         }
 
@@ -85,7 +85,7 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
+            callback: fn (): Collection => collect($this->makeRequest($endpoint, $params))
         );
     }
 
@@ -103,7 +103,7 @@ class ComuniIta implements Comuni
                 Config::integer('comuni.cache.stale', 30) * 60 * 24,
                 Config::integer('comuni.cache.ttl', 60) * 60 * 24,
             ],
-            callback: fn (): \Illuminate\Support\Collection => collect($this->makeRequest($endpoint, $params))
+            callback: fn (): Collection => collect($this->makeRequest($endpoint, $params))
         );
     }
 
@@ -117,7 +117,7 @@ class ComuniIta implements Comuni
     private function makeRequest(string $endpoints, array $parms = []): array
     {
         return Http::get($endpoints, $parms)
-            ->throw()
+            ->throw() // @phpstan-ignore-line method.notFound
             ->json();
     }
 
@@ -129,7 +129,7 @@ class ComuniIta implements Comuni
         $matches = Arr::where($data, fn ($value): bool => in_array($cap, $value['cap']));
 
         return filled($matches)
-            ? collect($matches)->map(fn (array $match): \CarloEusebi\LaravelComuni\Comune => Comune::make($match))
+            ? collect($matches)->map(fn (array $match): Comune => Comune::make($match))->values()
             : null;
     }
 }
