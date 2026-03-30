@@ -7,7 +7,7 @@ it('returns a collection of all provinces', function (): void {
     $result = Comuni::province();
 
     expect($result)
-        ->toHaveCount(107)
+        ->toHaveCount(110)
         ->each->toHaveKeys(['nome', 'codice', 'sigla', 'regione']);
 });
 

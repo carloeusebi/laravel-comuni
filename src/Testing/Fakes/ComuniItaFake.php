@@ -70,7 +70,7 @@ class ComuniItaFake implements Comuni
     }
 
     /**
-     * @return array<string, string|int|array<string, string>|array{lat:float, lng:float}|null>
+     * @return array<string, string|int|array<string, string>|numeric-string|null>
      */
     private function fakeComune(): array
     {
@@ -86,11 +86,8 @@ class ComuniItaFake implements Comuni
             'pec' => fake()->email(),
             'telefono' => fake()->phoneNumber(),
             'fax' => fake()->phoneNumber(),
-            'popolazione' => fake()->numberBetween(1000, 1000000),
-            'coordinate' => [
-                'lat' => fake()->latitude(),
-                'lng' => fake()->longitude(),
-            ],
+            'lat' => (string) fake()->latitude(),
+            'lng' => (string) fake()->longitude(),
         ];
     }
 

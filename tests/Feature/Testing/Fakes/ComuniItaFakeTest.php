@@ -12,7 +12,7 @@ it('returns a collection of comuni', function (): void {
 
     expect($fakeResponse)
         ->toHaveCount(500)
-        ->first()->toHaveKeys(['codice', 'nome', 'nomeStraniero', 'cap', 'prefisso', 'provincia', 'email', 'pec', 'telefono', 'fax', 'popolazione', 'coordinate']);
+        ->first()->toHaveKeys(['codice', 'nome', 'nomeStraniero', 'cap', 'prefisso', 'provincia', 'email', 'pec', 'telefono', 'fax', 'lat', 'lng']);
 });
 
 it('returns a collection of provinces', function (): void {

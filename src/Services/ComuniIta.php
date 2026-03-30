@@ -38,8 +38,8 @@ class ComuniIta implements Comuni
      *     pec: string|null,
      *     telefono: string|null,
      *     fax: string|null,
-     *     popolazione: int,
-     *     coordinate: array{lat: float, lng: float}
+     *     lat: numeric-string,
+     *     lng: numeric-string
      * }>
      *
      * @throws InvalidParameterCombinationException
