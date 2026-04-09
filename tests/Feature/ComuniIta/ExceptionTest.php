@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use CarloEusebi\LaravelComuni\Exceptions\InvalidParameterCombinationException;
 use CarloEusebi\LaravelComuni\Facades\Comuni;
 

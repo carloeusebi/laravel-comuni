@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CarloEusebi\LaravelComuni\Exceptions;
 
 use Exception;

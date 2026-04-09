@@ -8,7 +8,7 @@ it('returns a collection of comuni', function (): void {
     expect($result)
         ->toHaveCount(2)
         ->and($result->first())->toBeArray()
-        ->toHaveKeys(['codice', 'nome', 'nomeStraniero', 'cap', 'prefisso', 'provincia', 'email', 'pec', 'telefono', 'fax', 'lat', 'lng']);
+        ->toHaveKeys(['codice', 'nome', 'nomeStraniero', 'cap', 'prefisso', 'provincia', 'email', 'pec', 'telefono', 'fax', 'coordinate']);
 });
 
 it('returns comuni filtered by region', function (): void {
@@ -28,5 +28,5 @@ it('returns comuni filtered by additional parameters', function (): void {
 
     expect($result)
         ->toHaveCount(1)
-        ->first()->toHaveKey('codiceCatastale', '41013');
+        ->first()->toHaveKey('codiceCatastale', 'D488');
 });
